@@ -1,0 +1,87 @@
+---
+title: <span style="font-size :29px">"How to win the Eurovision song contest"</span>
+subtitle: |
+  | 'subtitle 1'
+  | 'subtitle 1'
+  | 'subtitle 2'
+  | 'FIT5147: Data Exploration and Visualization'
+author:
+- name: Panagiotis Stylianos
+  affiliation: Monash University
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  bookdown::pdf_document2:
+  latex_engine: xelatex
+  keep_tex: true
+  df_print: kable
+  fig_caption: yes
+  toc: true
+  toc_depth: 4
+geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
+fontsize: 12pt
+#documentclass: report
+papersize: a4
+linestretch: 1.2
+urlcolor: blue
+abstract: |
+  "This project explores trends and patterns that emerge from the Eurovision's song contest voting procedure. In the following report after performing some exploratory data analysis, it is evident that countries tend to favour their neighbours, with the point allocation remaining high between neighbour countries even when their final position wasn't favourable, indicating an indifference between the voting tendency and the 'quality' of the song. Moreover, a summary of the most popular words that appeared in winning song lyrics highlighted that the word _love_ appeared most times. Finally, a statistical test using the central limit theorem approach indicated that there is not a statistically significant difference between the judges and televoters criteria"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Introduction
+
+How to win the Eurovision Song Contest
+Name: Panagiotis Stylianos
+Student ID: 31184669
+Lab: 01
+Tutors: Niranjan Rao Nanjunda and Amir Malekianvar
+Date: 2020-11-11 
+“This report provides a comprehensive description of the final interacive visualization I created as part of the final assignment of FIT5147: Data Exploration and Visualization. Initialy includes information about the topic of the project, the message that the ” 
+fsdf 
+Introduction 
+
+This project explores trends and patterns that emerge from the Eurovision’s song contest voting procedure. In the following report after performing some exploratory data analysis, it is evident that countries tend to favour their neighbours, with the point allocation remaining high between neighbour countries even when their final position wasn’t favourable, indicating an indifference between the voting tendency and the ‘quality’ of the song. Moreover, a summary of the most popular words that appeared in winning song lyrics highlighted that the word love appeared the most times. Finally, a statistical test using the central limit theorem approach indicated that there is not a statistically significant difference between the judges and televoters criteria
+
+
+
+
+Conclusion
+
+•	Findings and what I have achieved
+•	What I learnt
+•	What I could have done differently 
+
+
+Conclusion 
+
+Based on the above findings, we can positively confirm the impact of geographic location in voting preference. Sub-regions tend to highly favour their close neighbours, with the point allocation remaining high between neighbour countries even when their final position wasn’t favourable, indicating an indifference between the voting tendency and the ‘quality’ of the song. A summary of the most popular words that appeared in winning song lyrics highlighted that the word love appeared the most times. Finally, a statistical test using the central limit theorem approach indicated that there is not a statistically significant difference between the judges and televoters criteria 
+Reflection 
+In terms of self-reflection I would say that I am very pleased with the final outcome. The topic was quite abstract and when I started 
+Moreover, the different visualizations 
+
+Overall, I am happy with the report and the code that I produced. I want it to explore more visualizations, but I lacked a variety in variables in my dataset. I didn’t produce any maps, as I think they will be a much more vital asset in interactive visualizations for the second part of the assignment. I think that the visuals I produced, can clearly aide the reader to indicate patterns and are helpful to communicate my findings. Although, due to the limit of only ten pages, they may lack a bit more height and width, for a much better scale it is suggested to view the html format of this document. This report was produced using the R programming language and RStudio, the code can be found on this GitHub repository. Also, you can find the report on my personal website, where later this semester I will also upload the second part of the assignment that will include interactive visualizations. 
+This report is part of an assignment for FIT5147: Data Exploration and Visualization, an elective unit in the Master of Business Analytics from Monash University." 
+
+
+
+# Design
+
+# Implementation
+
+# User Guide
+
+In this section users can find information about the interactive elements of the visualization. The aspect of interactivity is vital in allowing users to quickly navigate through different visualizations by changing a few parameters and quickly explore the dataset to gain further insight and reveal answers to the 
+
+
+After launching the app the user gets directed to the Introduction P
+# Conclusion
+
+# Bibliography
+
+# Appendix

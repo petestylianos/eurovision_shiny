@@ -1,19 +1,19 @@
 library(tidyverse)
 
 
-# country_points_each_year <- data %>% 
-#   filter(event == "f") %>% 
-#   group_by(year, to_country, to_region, decade) %>% 
-#   summarise(total_points = sum(points)) %>% 
-#   ungroup() 
-# 
-# 
-# position_table  <- country_points_each_year %>%
-#   group_by(year) %>% 
-#   arrange(desc(total_points)) %>% 
-#   dplyr::mutate(position = row_number(),
-#                 gap = total_points[1] - total_points) %>% 
-#   ungroup()
+country_points_each_year <- data %>%
+  filter(event == "f") %>%
+  group_by(year, to_country, to_region, decade) %>%
+  summarise(total_points = sum(points)) %>%
+  ungroup()
+
+
+position_table  <- country_points_each_year %>%
+  group_by(year) %>%
+  arrange(desc(total_points)) %>%
+  dplyr::mutate(position = row_number(),
+                gap = total_points[1] - total_points) %>%
+  ungroup()
 
 
 
@@ -34,7 +34,9 @@ jury_tele <-  data %>%
   filter(year > 2015,
          event == "f")  
 
-total_points_jury_tele <-  jury_tele %>% 
+total_points_jury_tele <- data %>% 
+  filter(year > 2015,
+         event == "f")  %>% 
   group_by(year, vote, to_country) %>% 
   summarise(total_points = sum(points)) 
 
@@ -42,18 +44,7 @@ df <- total_points_jury_tele %>%
   filter(year == "2016")
   
 
-install.packages("tableHTML")
-library(tableHTML)
-library(dplyr)
 
-a <- c('A', 'B', 'C', 'D', 'E')
-b <- c(20, 25, 40, 55, 60)
-c <- c(60, 30, 80, 50, 60)
-min <- c(15, 20, 40, 55, 55)
-max <- c(25, 30, 50, 65, 65)
-
-
-df <- data.frame(a, b, c, min, max)
 
 
 
@@ -83,11 +74,11 @@ join_position <- jury_position %>%
   left_join(tele_position, by = "to_country", suffix = c("jury", "tele"))
 
 
-join_position %>% 
+x <-  join_position %>% 
   mutate(to_country = ifelse(positionjury != positiontele ,
                     paste0('<span style="background-color:#ccccff">', to_country, '</span>'), 
                     ifelse( positionjury == positiontele, paste0('<span style="background-color:#ff9999">', to_country, '</span>'), 
-                            b)),
+                            positiontele)),
          # c = ifelse(c < min , 
          #            paste0('<span style="background-color:#ccccff">', c, '</span>'), 
          #            ifelse( c > max,  paste0('<span style="background-color:#ff9999">', c, '</span>'), 
@@ -95,5 +86,36 @@ join_position %>%
          ) %>% 
   `[`(1:3) %>%
   tableHTML(escape = FALSE, rownames = FALSE, 
-            widths = rep(50, 3))
+            widths = rep(350, 3),
+            headers = c("Country", "Jury Position", "Televoters Position"),
+            caption = "asdasda",
+            footer = "footer goes here",
+            border = 4,
+            collapse = "separate_shiny",
+            spacing = '5px 4px'
+            ) %>%
+  add_css_header(css = list("text-align", "center"), 
+                 headers = 1:3)  %>% 
+  add_css_column(css = list("text-align", "center"), 
+                 columns = 1:3)  
 
+
+
+
+
+
+  total_points_jury_tele  %>% 
+    filter(year == 2016) %>% 
+    ggplot(aes(fct_reorder(to_country, -total_points), total_points, fill = vote)) +
+    geom_col() +
+    ggthemes::theme_solarized_2() +
+    ggthemes::scale_fill_hc() +
+    theme_classic() +
+    theme(
+      axis.text.x =  ggtext::element_markdown(angle = 90, face = "italic")
+    ) +
+    labs(
+      x = "",
+      y = "Total Points",
+      fill = "Vote Origin"
+    )
