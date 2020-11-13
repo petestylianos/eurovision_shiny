@@ -26,7 +26,7 @@ data %>%
   summarise(total_points_received = sum(points, na.rm = T)) %>% 
   arrange(desc(total_points_received)) %>% 
   select(from_country, to_country, total_points_received, from_region, to_region) %>% 
-  head(20) %>% 
+  head(4) %>% 
   graph_from_data_frame() %>% 
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = total_points_received, 
@@ -35,8 +35,9 @@ data %>%
                  label_colour = "brown",
                  label_parse = T,
                  check_overlap = T,
+                 
                  ) +
-  geom_node_point(size = 5,  color = "black", shape = 18) +
+  geom_node_point(size = 5,  color = "black") +
   geom_node_text(aes(label = name), repel = TRUE,
                  point.padding = unit(0.15, "lines")) +
 
@@ -45,6 +46,7 @@ data %>%
          edge_width = F) +
   theme(
     plot.background = element_rect(fill="plum")
+    
   ) +
   labs(
    edge_color = "Region" 

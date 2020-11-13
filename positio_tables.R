@@ -71,23 +71,26 @@ tele_position <- total_points_jury_tele %>%
 
 
 join_position <- jury_position %>% 
-  left_join(tele_position, by = "to_country", suffix = c("jury", "tele"))
+  left_join(tele_position, by = "to_country", suffix = c("jury", "tele")) %>% 
+  left_join(filter(rankings, year == 2016)) %>% 
+  select(c(1:3,6)) %>% 
+  arrange(position)
 
 
-x <-  join_position %>% 
+ join_position %>% 
   mutate(to_country = ifelse(positionjury != positiontele ,
                     paste0('<span style="background-color:#ccccff">', to_country, '</span>'), 
-                    ifelse( positionjury == positiontele, paste0('<span style="background-color:#ff9999">', to_country, '</span>'), 
+                    ifelse(positionjury == positiontele, paste0('<span style="background-color:#ff9999">', to_country, '</span>'), 
                             positiontele)),
          # c = ifelse(c < min , 
          #            paste0('<span style="background-color:#ccccff">', c, '</span>'), 
          #            ifelse( c > max,  paste0('<span style="background-color:#ff9999">', c, '</span>'), 
          #                    c))
          ) %>% 
-  `[`(1:3) %>%
+  `[`(1:4) %>%
   tableHTML(escape = FALSE, rownames = FALSE, 
-            widths = rep(350, 3),
-            headers = c("Country", "Jury Position", "Televoters Position"),
+            widths = rep(350, 4),
+            headers = c("Country", "Jury Position", "Televoters Position", "Final"),
             caption = "asdasda",
             footer = "footer goes here",
             border = 4,
@@ -95,10 +98,10 @@ x <-  join_position %>%
             spacing = '5px 4px'
             ) %>%
   add_css_header(css = list("text-align", "center"), 
-                 headers = 1:3)  %>% 
+                 headers = 1:4)  %>% 
   add_css_column(css = list("text-align", "center"), 
-                 columns = 1:3)  
-
+                 columns = 1:4)  
+x
 
 
 
